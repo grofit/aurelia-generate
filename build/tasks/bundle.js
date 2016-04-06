@@ -39,5 +39,5 @@ gulp.task('unbundle:example', function() {
 });
 
 gulp.task('bundle:example', ['build', 'unbundle:example'], function() {
-    //return bundler.bundle(config);
+    return bundler.bundle(config);
 });
