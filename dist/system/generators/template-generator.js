@@ -11,11 +11,11 @@ System.register([], function (_export) {
       TemplateGenerator = function TemplateGenerator() {
         _classCallCheck(this, TemplateGenerator);
 
-        this.generatorType = "none";
-
         this.generateTemplate = function (model, options) {
           return [];
         };
+
+        this.generatorType = "none";
       };
 
       _export("TemplateGenerator", TemplateGenerator);

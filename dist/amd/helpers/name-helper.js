@@ -24,19 +24,19 @@ define(['exports'], function (exports) {
         }, {
             key: 'makeSpinalCase',
             value: function makeSpinalCase(name) {
-                return name.replace(/([A-Z])/g, ' $1').trim().replace(' ', '-').toLowerCase();
+                return name.replace(/([A-Z])/g, ' $1').trim().replace(" ", "-").toLowerCase();
             }
         }, {
             key: 'generateId',
             value: function value(property, idPrefix, idSuffix) {
-                var generatedId = '';
+                var generatedId = "";
 
                 if (idPrefix) {
-                    generatedId += idPrefix + '-';
+                    generatedId += idPrefix + "-";
                 }
                 generatedId += NameHelper.makeSpinalCase(property);
                 if (idSuffix) {
-                    generatedId += '-' + idSuffix;
+                    generatedId += "-" + idSuffix;
                 }
 
                 return generatedId;

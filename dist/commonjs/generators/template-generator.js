@@ -9,11 +9,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var TemplateGenerator = function TemplateGenerator() {
   _classCallCheck(this, TemplateGenerator);
 
-  this.generatorType = "none";
-
   this.generateTemplate = function (model, options) {
     return [];
   };
+
+  this.generatorType = "none";
 };
 
 exports.TemplateGenerator = TemplateGenerator;

@@ -1,21 +1,26 @@
-import {inject, customElement, noView, bindable, ViewSlot, ResourceRegistry, ViewResources, ViewCompiler} from 'aurelia-framework';
+import {inject, customElement, noView, bindable, ViewSlot, ViewResources, ViewCompiler} from 'aurelia-framework';
 import {TemplateGenerator} from "../generators/template-generator"
+
+console.log("type listening for", new TemplateGenerator());
 
 @customElement('generate')
 @noView
-@inject(Element, ViewSlot, ViewCompiler, ResourceRegistry, TemplateGenerator)
+@inject(Element, ViewSlot, ViewCompiler, ViewResources, TemplateGenerator)
 export class GenerateElement {
   @bindable usingModel;
 
-  constructor(element, viewSlot, viewCompiler, resourceRegistry, templateGenerator) {
+  constructor(element, viewSlot, viewCompiler, viewResources, templateGenerator) {
     this.element = element;
     this.viewSlot = viewSlot;
     this.viewCompiler = viewCompiler;
-    this.resourceRegistry = resourceRegistry;
+    this.viewResources = viewResources;
     this.templateGenerator = templateGenerator;
+
+    console.log("got", templateGenerator);
   }
 
   attached() {
+    console.log("attached");
     var generatedElements = this.templateGenerator.generateTemplate(this.usingModel, {});
     var documentFragment = document.createDocumentFragment();
     generatedElements.forEach((generatedElement) => {
@@ -23,8 +28,7 @@ export class GenerateElement {
     });
 
     console.log("Generated " + generatedElements.length + " Elements");
-    var resources = new ViewResources(this.resourceRegistry);
-    var viewFactory = this.viewCompiler.compile(documentFragment, resources);
+    var viewFactory = this.viewCompiler.compile(documentFragment, this.viewResources);
     var view = viewFactory.create(this.element, this.usingModel);
     this.viewSlot.add(view);
   }

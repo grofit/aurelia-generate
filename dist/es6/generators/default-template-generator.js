@@ -5,7 +5,11 @@ import {TypeHelper} from "../helpers/type-helper"
 
 export class DefaultTemplateGenerator extends TemplateGenerator
 {
-  generatorType = "default";
+  constructor()
+  {
+    super();
+    this.generatorType = "default";
+  }
 
   createInputElement = function(property, observable) {
     var observableValue = observable;
