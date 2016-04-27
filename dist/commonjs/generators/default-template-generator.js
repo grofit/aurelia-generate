@@ -30,15 +30,15 @@ var DefaultTemplateGenerator = (function (_TemplateGenerator) {
       var observableValue = observable;
 
       if (_helpersTypeHelper.TypeHelper.isBoolean(observableValue)) {
-        return _helpersTypeHelper.TypeHelper.createCheckbox(property);
+        return _helpersElementHelper.ElementHelper.createCheckbox(property);
       }
 
       if (_helpersTypeHelper.TypeHelper.isNumber(observableValue)) {
-        return _helpersTypeHelper.TypeHelper.createInputType(property, "number");
+        return _helpersElementHelper.ElementHelper.createInputType(property, "number");
       }
 
       if (_helpersTypeHelper.TypeHelper.isDate(observableValue)) {
-        return _helpersTypeHelper.TypeHelper.createInputType(property, "date");
+        return _helpersElementHelper.ElementHelper.createInputType(property, "date");
       }
 
       if (property.toLowerCase().indexOf("password") >= 0) {
@@ -65,8 +65,6 @@ var DefaultTemplateGenerator = (function (_TemplateGenerator) {
       var withLabels = _helpersTypeHelper.TypeHelper.isBoolean(options.withLabels) ? options.withLabels : true;
       var withPlaceholders = _helpersTypeHelper.TypeHelper.isBoolean(options.withPlaceholders) ? options.withPlaceholders : true;
       var withContainer = _helpersTypeHelper.TypeHelper.isBoolean(options.withContainer) ? options.withContainer : true;
-
-      console.log("OPTIONS", options);
 
       var generatedElements = [];
       var inputElement, labelElement, containerElement;

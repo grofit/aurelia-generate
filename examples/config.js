@@ -11,18 +11,18 @@ System.config({
   },
   paths: {
     "github:*": "jspm_packages/github/*",
-    "npm:*": "jspm_packages/npm/*",
-    "aurelia-generate": "../dist/commonjs/"
+    "npm:*": "jspm_packages/npm/*"
   },
   packages: {
     "aurelia-generate": {
       "main": "index.js",
       "map": {
-        "*": "**/*"
+        "aurelia-generate": "../dist/commonjs"
       }
     }
   },
   map: {
+    "aurelia-generate": "../dist/commonjs",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-beta.1.2.0",
     "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1.2.0",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.2.1",

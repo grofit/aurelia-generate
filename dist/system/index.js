@@ -7,12 +7,6 @@ System.register(["./generators/template-generator", "./generators/default-templa
 
     function configure(aurelia) {
         aurelia.container.registerInstance(TemplateGenerator, new DefaultTemplateGenerator());
-
-        console.log("normal generator", new TemplateGenerator());
-        console.log("default generator", new DefaultTemplateGenerator());
-
-        console.log("immediate check", aurelia.container.get(TemplateGenerator));
-
         aurelia.globalResources("./elements/generate-element");
     }
 

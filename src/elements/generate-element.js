@@ -15,19 +15,15 @@ export class GenerateElement {
     this.viewCompiler = viewCompiler;
     this.viewResources = viewResources;
     this.templateGenerator = templateGenerator;
-
-    console.log("got", templateGenerator);
   }
 
   attached() {
-    console.log("attached");
     var generatedElements = this.templateGenerator.generateTemplate(this.usingModel, {});
     var documentFragment = document.createDocumentFragment();
     generatedElements.forEach((generatedElement) => {
       documentFragment.appendChild(generatedElement);
     });
 
-    console.log("Generated " + generatedElements.length + " Elements");
     var viewFactory = this.viewCompiler.compile(documentFragment, this.viewResources);
     var view = viewFactory.create(this.element, this.usingModel);
     this.viewSlot.add(view);

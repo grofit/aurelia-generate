@@ -15,13 +15,13 @@ export class DefaultTemplateGenerator extends TemplateGenerator
     var observableValue = observable;
 
     if(TypeHelper.isBoolean(observableValue))
-    { return TypeHelper.createCheckbox(property); }
+    { return ElementHelper.createCheckbox(property); }
 
     if(TypeHelper.isNumber(observableValue))
-    { return TypeHelper.createInputType(property, "number"); }
+    { return ElementHelper.createInputType(property, "number"); }
 
     if(TypeHelper.isDate(observableValue))
-    { return TypeHelper.createInputType(property, "date")}
+    { return ElementHelper.createInputType(property, "date")}
 
     if(property.toLowerCase().indexOf("password") >= 0)
     { return ElementHelper.createInputType(property, "password"); }
@@ -46,8 +46,6 @@ export class DefaultTemplateGenerator extends TemplateGenerator
     var withLabels = TypeHelper.isBoolean(options.withLabels) ? options.withLabels : true;
     var withPlaceholders = TypeHelper.isBoolean(options.withPlaceholders) ? options.withPlaceholders : true;
     var withContainer = TypeHelper.isBoolean(options.withContainer) ? options.withContainer : true;
-
-    console.log("OPTIONS", options);
 
     var generatedElements = [];
     var inputElement, labelElement, containerElement;
