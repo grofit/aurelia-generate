@@ -2,23 +2,13 @@ System.config({
   baseURL: ".",
   defaultJSExtensions: true,
   transpiler: "babel",
-  babelOptions: {
-    "optional": [
-      "runtime",
-      "optimisation.modules.system",
-      "es7.decorators"
-    ]
-  },
   paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
   packages: {
     "aurelia-generate": {
-      "main": "index.js",
-      "map": {
-        "aurelia-generate": "../dist/commonjs"
-      }
+      "main": "index.js"
     }
   },
   map: {
@@ -29,8 +19,8 @@ System.config({
     "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1.2.0",
     "aurelia-pal-browser": "npm:aurelia-pal-browser@1.0.0-beta.1.2.0",
     "aurelia-templating": "npm:aurelia-templating@1.0.0-beta.1.2.1",
-    "babel": "npm:babel-core@5.8.38",
-    "babel-runtime": "npm:babel-runtime@5.8.38",
+    "babel": "npm:babel-core@5.8.35",
+    "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@1.2.6",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -162,7 +152,7 @@ System.config({
       "aurelia-path": "npm:aurelia-path@1.0.0-beta.1.2.0",
       "aurelia-task-queue": "npm:aurelia-task-queue@1.0.0-beta.1.2.0"
     },
-    "npm:babel-runtime@5.8.38": {
+    "npm:babel-runtime@5.8.35": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:core-js@1.2.6": {
@@ -266,8 +256,8 @@ System.config({
       "npm:aurelia-templating-router@1.0.0-beta.1.2.0/router-view.js",
       "npm:aurelia-templating@1.0.0-beta.1.2.1.js",
       "npm:aurelia-templating@1.0.0-beta.1.2.1/aurelia-templating.js",
-      "npm:babel-core@5.8.38.js",
-      "npm:babel-core@5.8.38/browser.js"
+      "npm:babel-core@5.8.35.js",
+      "npm:babel-core@5.8.35/browser.js"
     ]
   }
 });
