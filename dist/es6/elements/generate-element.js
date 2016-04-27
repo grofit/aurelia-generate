@@ -1,13 +1,12 @@
 import {inject, customElement, noView, bindable, ViewSlot, ViewResources, ViewCompiler} from 'aurelia-framework';
 import {TemplateGenerator} from "../generators/template-generator"
 
-console.log("type listening for", new TemplateGenerator());
-
 @customElement('generate')
 @noView
 @inject(Element, ViewSlot, ViewCompiler, ViewResources, TemplateGenerator)
 export class GenerateElement {
   @bindable usingModel;
+  @bindable options;
 
   constructor(element, viewSlot, viewCompiler, viewResources, templateGenerator) {
     this.element = element;
@@ -17,8 +16,10 @@ export class GenerateElement {
     this.templateGenerator = templateGenerator;
   }
 
-  attached() {
-    var generatedElements = this.templateGenerator.generateTemplate(this.usingModel, {});
+  bind(bindingContext, overrideContext) {
+    bindingContext.model = this.usingModel;
+
+    var generatedElements = this.templateGenerator.generateTemplate(this.usingModel, this.options || {});
     var documentFragment = document.createDocumentFragment();
     generatedElements.forEach((generatedElement) => {
       documentFragment.appendChild(generatedElement);

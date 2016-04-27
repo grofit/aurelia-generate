@@ -21,24 +21,25 @@ define(["exports", "./template-generator", "../helpers/element-helper", "../help
 
       this.createInputElement = function (property, observable) {
         var observableValue = observable;
+        var boundProperty = "model." + property;
 
         if (_helpersTypeHelper.TypeHelper.isBoolean(observableValue)) {
-          return _helpersElementHelper.ElementHelper.createCheckbox(property);
+          return _helpersElementHelper.ElementHelper.createCheckbox(boundProperty);
         }
 
         if (_helpersTypeHelper.TypeHelper.isNumber(observableValue)) {
-          return _helpersElementHelper.ElementHelper.createInputType(property, "number");
+          return _helpersElementHelper.ElementHelper.createInputType(boundProperty, "number");
         }
 
         if (_helpersTypeHelper.TypeHelper.isDate(observableValue)) {
-          return _helpersElementHelper.ElementHelper.createInputType(property, "date");
+          return _helpersElementHelper.ElementHelper.createInputType(boundProperty, "date");
         }
 
         if (property.toLowerCase().indexOf("password") >= 0) {
-          return _helpersElementHelper.ElementHelper.createInputType(property, "password");
+          return _helpersElementHelper.ElementHelper.createInputType(boundProperty, "password");
         }
 
-        return _helpersElementHelper.ElementHelper.createInputType(property, "text");
+        return _helpersElementHelper.ElementHelper.createInputType(boundProperty, "text");
       };
 
       this.createForObservable = function (property, observable, idPrefix, idSuffix, withPlaceholders) {

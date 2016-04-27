@@ -13,20 +13,21 @@ export class DefaultTemplateGenerator extends TemplateGenerator
 
   createInputElement = function(property, observable) {
     var observableValue = observable;
+    var boundProperty = "model." + property;
 
     if(TypeHelper.isBoolean(observableValue))
-    { return ElementHelper.createCheckbox(property); }
+    { return ElementHelper.createCheckbox(boundProperty); }
 
     if(TypeHelper.isNumber(observableValue))
-    { return ElementHelper.createInputType(property, "number"); }
+    { return ElementHelper.createInputType(boundProperty, "number"); }
 
     if(TypeHelper.isDate(observableValue))
-    { return ElementHelper.createInputType(property, "date")}
+    { return ElementHelper.createInputType(boundProperty, "date")}
 
     if(property.toLowerCase().indexOf("password") >= 0)
-    { return ElementHelper.createInputType(property, "password"); }
+    { return ElementHelper.createInputType(boundProperty, "password"); }
 
-    return ElementHelper.createInputType(property, "text");
+    return ElementHelper.createInputType(boundProperty, "text");
   };
 
   createForObservable = function(property, observable, idPrefix, idSuffix, withPlaceholders) {

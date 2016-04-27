@@ -52,7 +52,7 @@ Which would end up outputting (by default) the content:
 The default template generator can also setup id prefixes, suffixes, labels and placeholders like so: (Not fully working in aurelia yet)
 
 ```
-<generate using-model.bind="ActiveUser" id-prefix.bind="some-prefix" id-suffix.bind="some-suffix" with-labels="true" with-placeholders="true"></generate>
+<generate using-model.bind="ActiveUser" options.bind="{ 'id-prefix': "some-prefix", 'id-suffix': 'some-suffix', 'with-labels': true, 'with-placeholders': true"></generate>
 ```
 There is also the `type` value which can influence which generator is used, and this can all be customised, although this is still a work in progress in aurelia.
 
@@ -64,15 +64,18 @@ aurelia.container.registerInstance(TemplateGenerator, new MyCustomTemplateGenera
 There are a few options you can set
 
 * **using-model** - The vm you wish to generate the markup for (MANDATORY FOR ALL GENERATORS)
-* **with-type** - The type of generator your want to use (MANDATORY FOR ALL GENERATORS)
+* **options** - As aurelia does not allow you to mix mandatory and optional we need to capture options in its own attribute
 
-These are specifically for the default generator
+Options available for the default generator are:
 
 * **id-prefix** - The prefix to give an elements id, general format is <prefix>-<name-of-property-as-spinal-case>-<suffix>, defaulted to nothing
 * **id-suffix** - The suffix to give an elements id
 * **with-labels** - If labels should be generated before the input element, defaults to true
 * **with-placeholders** - If placeholders should be generated for the input elements, defaults to true
 * **with-container** - If container divs should wrap each input (and possible label), defaults to true
+
+Unlike the knockout version which can support multiple generator types at once this version currently does not,
+although it probably will do in the future once aurelia is more mature.
 
 ## Customisation
 
