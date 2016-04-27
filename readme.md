@@ -30,6 +30,12 @@ contain an input element for each of your VM properties. This may not always be 
 you will probably still want templates, but for those times you just want to spit out some input fields which represent 
 your VM then you are in luck, this is what knockout.generate should do.
 
+## Example
+
+If you want to see it in action check out the example below and the code in the repo:
+
+[View Example](https://rawgit.com/grofit/aurelia-generate/master/examples/index.html)
+
 ## Usage
 
 So the simplest usage would be
