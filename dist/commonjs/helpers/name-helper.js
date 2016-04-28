@@ -27,7 +27,7 @@ var NameHelper = (function () {
         }
     }, {
         key: 'generateId',
-        value: function value(property, idPrefix, idSuffix) {
+        value: function generateId(property, idPrefix, idSuffix) {
             var generatedId = "";
 
             if (idPrefix) {
@@ -39,8 +39,7 @@ var NameHelper = (function () {
             }
 
             return generatedId;
-        },
-        enumerable: true
+        }
     }]);
 
     return NameHelper;

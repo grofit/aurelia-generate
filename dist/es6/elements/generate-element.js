@@ -1,26 +1,30 @@
 import {inject, customElement, noView, bindable, ViewSlot, ViewResources, ViewCompiler} from 'aurelia-framework';
-import {TemplateGenerator} from "../generators/template-generator"
+import {GeneratorRegistry} from "../registry/generator-registry"
 
 @customElement('generate')
 @noView
-@inject(Element, ViewSlot, ViewCompiler, ViewResources, TemplateGenerator)
+@inject(Element, ViewSlot, ViewCompiler, ViewResources, GeneratorRegistry)
 export class GenerateElement {
   @bindable usingModel;
+  @bindable type = "default";
   @bindable options;
 
-  constructor(element, viewSlot, viewCompiler, viewResources, templateGenerator) {
+  constructor(element, viewSlot, viewCompiler, viewResources, generatorRegistry) {
     this.element = element;
     this.viewSlot = viewSlot;
     this.viewCompiler = viewCompiler;
     this.viewResources = viewResources;
-    this.templateGenerator = templateGenerator;
+    this.generatorRegistry = generatorRegistry;
   }
 
-  bind(bindingContext, overrideContext) {
+  bind(bindingContext) {
     bindingContext.model = this.usingModel;
 
-    var generatedElements = this.templateGenerator.generateTemplate(this.usingModel, this.options || {});
+    var templateGenerator = this.generatorRegistry.getGenerator(this.type);
+    
+    var generatedElements = templateGenerator.generateTemplate(this.usingModel, this.options || {});
     var documentFragment = document.createDocumentFragment();
+
     generatedElements.forEach((generatedElement) => {
       documentFragment.appendChild(generatedElement);
     });

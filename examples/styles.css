@@ -12,3 +12,8 @@ input
     font-size: 1em;
     font-weight: bold;
 }
+
+strike
+{
+    display: block;
+}

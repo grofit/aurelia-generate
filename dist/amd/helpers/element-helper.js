@@ -16,38 +16,34 @@ define(["exports", "./name-helper"], function (exports, _nameHelper) {
 
         _createClass(ElementHelper, null, [{
             key: "createCheckbox",
-            value: function value(property) {
+            value: function createCheckbox(property) {
                 var inputElement = document.createElement("input");
                 inputElement.type = "checkbox";
                 inputElement.setAttribute("checked.bind", property);
                 return inputElement;
-            },
-            enumerable: true
+            }
         }, {
             key: "createInputType",
-            value: function value(property, type) {
+            value: function createInputType(property, type) {
                 var inputElement = document.createElement("input");
                 inputElement.type = type;
                 inputElement.setAttribute("value.bind", property);
                 return inputElement;
-            },
-            enumerable: true
+            }
         }, {
             key: "createLabelFor",
-            value: function value(element, property) {
+            value: function createLabelFor(element, property) {
                 var labelElement = document.createElement("label");
                 labelElement.htmlFor = element.id;
                 labelElement.innerHTML = _nameHelper.NameHelper.makeTextualName(property);
                 return labelElement;
-            },
-            enumerable: true
+            }
         }, {
             key: "createContainer",
-            value: function value() {
+            value: function createContainer() {
                 var containerElement = document.createElement("div");
                 return containerElement;
-            },
-            enumerable: true
+            }
         }]);
 
         return ElementHelper;

@@ -1,7 +1,7 @@
-System.register(['aurelia-framework', '../generators/template-generator'], function (_export) {
+System.register(['aurelia-framework', '../registry/generator-registry'], function (_export) {
   'use strict';
 
-  var inject, customElement, noView, bindable, ViewSlot, ViewResources, ViewCompiler, TemplateGenerator, GenerateElement;
+  var inject, customElement, noView, bindable, ViewSlot, ViewResources, ViewCompiler, GeneratorRegistry, GenerateElement;
 
   var _createDecoratedClass = (function () { function defineProperties(target, descriptors, initializers) { for (var i = 0; i < descriptors.length; i++) { var descriptor = descriptors[i]; var decorators = descriptor.decorators; var key = descriptor.key; delete descriptor.key; delete descriptor.decorators; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor || descriptor.initializer) descriptor.writable = true; if (decorators) { for (var f = 0; f < decorators.length; f++) { var decorator = decorators[f]; if (typeof decorator === 'function') { descriptor = decorator(target, key, descriptor) || descriptor; } else { throw new TypeError('The decorator for method ' + descriptor.key + ' is of the invalid type ' + typeof decorator); } } if (descriptor.initializer !== undefined) { initializers[key] = descriptor; continue; } } Object.defineProperty(target, key, descriptor); } } return function (Constructor, protoProps, staticProps, protoInitializers, staticInitializers) { if (protoProps) defineProperties(Constructor.prototype, protoProps, protoInitializers); if (staticProps) defineProperties(Constructor, staticProps, staticInitializers); return Constructor; }; })();
 
@@ -18,8 +18,8 @@ System.register(['aurelia-framework', '../generators/template-generator'], funct
       ViewSlot = _aureliaFramework.ViewSlot;
       ViewResources = _aureliaFramework.ViewResources;
       ViewCompiler = _aureliaFramework.ViewCompiler;
-    }, function (_generatorsTemplateGenerator) {
-      TemplateGenerator = _generatorsTemplateGenerator.TemplateGenerator;
+    }, function (_registryGeneratorRegistry) {
+      GeneratorRegistry = _registryGeneratorRegistry.GeneratorRegistry;
     }],
     execute: function () {
       GenerateElement = (function () {
@@ -32,16 +32,25 @@ System.register(['aurelia-framework', '../generators/template-generator'], funct
           initializer: null,
           enumerable: true
         }, {
+          key: 'type',
+          decorators: [bindable],
+          initializer: function initializer() {
+            return "default";
+          },
+          enumerable: true
+        }, {
           key: 'options',
           decorators: [bindable],
           initializer: null,
           enumerable: true
         }], null, _instanceInitializers);
 
-        function GenerateElement(element, viewSlot, viewCompiler, viewResources, templateGenerator) {
+        function GenerateElement(element, viewSlot, viewCompiler, viewResources, generatorRegistry) {
           _classCallCheck(this, _GenerateElement);
 
           _defineDecoratedPropertyDescriptor(this, 'usingModel', _instanceInitializers);
+
+          _defineDecoratedPropertyDescriptor(this, 'type', _instanceInitializers);
 
           _defineDecoratedPropertyDescriptor(this, 'options', _instanceInitializers);
 
@@ -49,16 +58,19 @@ System.register(['aurelia-framework', '../generators/template-generator'], funct
           this.viewSlot = viewSlot;
           this.viewCompiler = viewCompiler;
           this.viewResources = viewResources;
-          this.templateGenerator = templateGenerator;
+          this.generatorRegistry = generatorRegistry;
         }
 
         _createDecoratedClass(GenerateElement, [{
           key: 'bind',
-          value: function bind(bindingContext, overrideContext) {
+          value: function bind(bindingContext) {
             bindingContext.model = this.usingModel;
 
-            var generatedElements = this.templateGenerator.generateTemplate(this.usingModel, this.options || {});
+            var templateGenerator = this.generatorRegistry.getGenerator(this.type);
+
+            var generatedElements = templateGenerator.generateTemplate(this.usingModel, this.options || {});
             var documentFragment = document.createDocumentFragment();
+
             generatedElements.forEach(function (generatedElement) {
               documentFragment.appendChild(generatedElement);
             });
@@ -70,7 +82,7 @@ System.register(['aurelia-framework', '../generators/template-generator'], funct
         }], null, _instanceInitializers);
 
         var _GenerateElement = GenerateElement;
-        GenerateElement = inject(Element, ViewSlot, ViewCompiler, ViewResources, TemplateGenerator)(GenerateElement) || GenerateElement;
+        GenerateElement = inject(Element, ViewSlot, ViewCompiler, ViewResources, GeneratorRegistry)(GenerateElement) || GenerateElement;
         GenerateElement = noView(GenerateElement) || GenerateElement;
         GenerateElement = customElement('generate')(GenerateElement) || GenerateElement;
         return GenerateElement;

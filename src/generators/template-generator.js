@@ -5,7 +5,7 @@ export class TemplateGenerator
     this.generatorType = "none";
   }
   
-  generateTemplate = function(model, options) {
+  generateTemplate = (model, options) => {
     return [];
   }
 }

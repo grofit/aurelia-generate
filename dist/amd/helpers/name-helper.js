@@ -28,7 +28,7 @@ define(['exports'], function (exports) {
             }
         }, {
             key: 'generateId',
-            value: function value(property, idPrefix, idSuffix) {
+            value: function generateId(property, idPrefix, idSuffix) {
                 var generatedId = "";
 
                 if (idPrefix) {
@@ -40,8 +40,7 @@ define(['exports'], function (exports) {
                 }
 
                 return generatedId;
-            },
-            enumerable: true
+            }
         }]);
 
         return NameHelper;

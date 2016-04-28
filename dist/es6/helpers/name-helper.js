@@ -14,7 +14,7 @@ export class NameHelper
             .toLowerCase();
     }
 
-    static generateId = function(property, idPrefix, idSuffix) {
+    static generateId(property, idPrefix, idSuffix) {
         var generatedId = "";
 
         if(idPrefix) { generatedId += (idPrefix + "-"); }

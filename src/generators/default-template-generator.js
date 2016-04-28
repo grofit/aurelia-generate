@@ -11,7 +11,7 @@ export class DefaultTemplateGenerator extends TemplateGenerator
     this.generatorType = "default";
   }
 
-  createInputElement = function(property, observable) {
+  createInputElement(property, observable) {
     var observableValue = observable;
     var boundProperty = "model." + property;
 
@@ -22,7 +22,7 @@ export class DefaultTemplateGenerator extends TemplateGenerator
     { return ElementHelper.createInputType(boundProperty, "number"); }
 
     if(TypeHelper.isDate(observableValue))
-    { return ElementHelper.createInputType(boundProperty, "date")}
+    { return ElementHelper.createInputType(boundProperty, "datetime")}
 
     if(property.toLowerCase().indexOf("password") >= 0)
     { return ElementHelper.createInputType(boundProperty, "password"); }
@@ -41,7 +41,7 @@ export class DefaultTemplateGenerator extends TemplateGenerator
     return inputElement;
   };
 
-  generateTemplate = function(model, options) {
+  generateTemplate = (model, options) => {
     var idPrefix = options.idPrefix || "";
     var idSuffix = options.idSuffix || "";
     var withLabels = TypeHelper.isBoolean(options.withLabels) ? options.withLabels : true;

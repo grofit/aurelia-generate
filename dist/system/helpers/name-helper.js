@@ -29,7 +29,7 @@ System.register([], function (_export) {
                     }
                 }, {
                     key: 'generateId',
-                    value: function value(property, idPrefix, idSuffix) {
+                    value: function generateId(property, idPrefix, idSuffix) {
                         var generatedId = "";
 
                         if (idPrefix) {
@@ -41,8 +41,7 @@ System.register([], function (_export) {
                         }
 
                         return generatedId;
-                    },
-                    enumerable: true
+                    }
                 }]);
 
                 return NameHelper;

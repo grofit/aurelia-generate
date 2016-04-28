@@ -1,6 +1,14 @@
 <template>
-    <h1>Generated form from model</h1>
-    <generate using-model.bind="user"></generate>
-    <p>As you can see it automatically knows how to generate forms for models, and gives contextual ids / labels / placeholders</p>
-    <p>You can even write your own generators to apply whatever conventions you want.</p>
+    <section>
+        <h2>Generated form from model with default generator</h2>
+        <generate using-model.bind="user"></generate>
+        <p>As you can see it automatically knows how to generate forms for models, and gives contextual ids / labels / placeholders</p>
+        <p>You can even write your own generators to apply whatever conventions you want.</p>
+    </section>
+    <section>
+        <h2>Generated form from model with custom generator</h2>
+        <generate using-model.bind="user" type="super-strike"></generate>
+        <p>This stupid generator turns all your properties into striked elements...</p>
+        <p>It was going to be a marquee but turns out browsers dont support it anymore :(</p>
+    </section>
 </template>

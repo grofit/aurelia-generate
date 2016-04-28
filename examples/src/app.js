@@ -1,19 +1,19 @@
-class User
-{
-    constructor()
-    {
-        this.name = "someUsername";
-        this.score = 10;
-        this.email = "test@test.com";
-        this.dateOfBirth = new Date();
-        this.password = "50m3P455w0rd!";
-        this.isActive = true;
-    }
-}
+import {inject} from "aurelia-framework";
+import {GeneratorRegistry} from "aurelia-generate";
 
+import {User} from "./models/user";
+import {StrikeGenerator} from "./generators/strike-generator";
+
+@inject(GeneratorRegistry)
 export class App
 {
-    constructor(){
+    constructor(generatorRegistry){
         this.user = new User();
+        this.generatorRegistry = generatorRegistry;
+        this.registerStrikeRegistry();
+    }
+
+    registerStrikeRegistry() {
+        this.generatorRegistry.addGenerator(new StrikeGenerator());
     }
 }
