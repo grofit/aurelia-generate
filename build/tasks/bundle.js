@@ -17,7 +17,8 @@ var bundles = {
             "aurelia-templating-router",
             "aurelia-templating-resources",
             "aurelia-history-browser",
-            "babel"
+            "babel",
+            "core-js"
         ],
         "options": {
             "inject": true,
