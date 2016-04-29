@@ -63,7 +63,8 @@ aurelia.container.registerInstance(TemplateGenerator, new MyCustomTemplateGenera
 
 There are a few options you can set
 
-* **using-model** - The vm you wish to generate the markup for (MANDATORY FOR ALL GENERATORS)
+* **using-model** - The vm you wish to generate the markup for
+* **type** - The generator type you want to use, defaults to "default"
 * **options** - As aurelia does not allow you to mix mandatory and optional we need to capture options in its own attribute
 
 Options available for the default generator are:
@@ -98,5 +99,31 @@ export class YourCustomTemplateGenerator extends TemplateGenerator
     }
 }
 ```
+
+Once you have your template generator you will need to add it into the generator registry, which is done 
+in the example but to save you looking over there you would do:
+
+```
+import {inject} from "aurelia-framework";
+import {GeneratorRegistry} from "aurelia-generate";
+import {YourGeneratorHere} from "./generators/your-generator";
+
+@inject(GeneratorRegistry)
+export class App
+{
+    constructor(generatorRegistry){
+        generatorRegistry.addGenerator(new YourGeneratorHere());
+    }
+}
+```
+
+Then you could use it by doing:
+
+```
+<generate using-model.bind="someModel" type="your-generator-type"></generate>
+```
+
+This approach allows you to have multiple generators that you can pick and choose from 
+depending upon if you need different scenarios, i.e read only views, fancy labels or custom controls etc.
 
 Not much more too it really...
